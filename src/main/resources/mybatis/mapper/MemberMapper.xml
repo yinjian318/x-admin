@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Member" >
+    <constructor >
+      <idArg column="memberId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="memberName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="age" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve01" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve02" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve03" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve04" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve05" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve06" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve07" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve08" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve09" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve10" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="isDelete" jdbcType="SMALLINT" javaType="java.lang.Short" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    memberId, memberName, sex, age, tel, address, reserve01, reserve02, reserve03, reserve04, 
+    reserve05, reserve06, reserve07, reserve08, reserve09, reserve10, isDelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where memberId = #{memberid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="map">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM
+    member
+    WHERE isDelete = 0
+    <if test="memberName != null and memberName != ''">
+      AND memberName = #{membername,jdbcType=VARCHAR}
+    </if>
+    order by memberId ASC
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from member
+    where memberId = #{memberid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.model.Member" >
+    insert into member (memberId, memberName, sex, 
+      age, tel, address, 
+      reserve01, reserve02, reserve03, 
+      reserve04, reserve05, reserve06, 
+      reserve07, reserve08, reserve09, 
+      reserve10, isDelete)
+    values (#{memberid,jdbcType=BIGINT}, #{membername,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{reserve01,jdbcType=VARCHAR}, #{reserve02,jdbcType=VARCHAR}, #{reserve03,jdbcType=VARCHAR}, 
+      #{reserve04,jdbcType=VARCHAR}, #{reserve05,jdbcType=VARCHAR}, #{reserve06,jdbcType=VARCHAR}, 
+      #{reserve07,jdbcType=VARCHAR}, #{reserve08,jdbcType=VARCHAR}, #{reserve09,jdbcType=VARCHAR}, 
+      #{reserve10,jdbcType=VARCHAR}, #{isdelete,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Member" >
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberid != null" >
+        memberId,
+      </if>
+      <if test="membername != null" >
+        memberName,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="reserve01 != null" >
+        reserve01,
+      </if>
+      <if test="reserve02 != null" >
+        reserve02,
+      </if>
+      <if test="reserve03 != null" >
+        reserve03,
+      </if>
+      <if test="reserve04 != null" >
+        reserve04,
+      </if>
+      <if test="reserve05 != null" >
+        reserve05,
+      </if>
+      <if test="reserve06 != null" >
+        reserve06,
+      </if>
+      <if test="reserve07 != null" >
+        reserve07,
+      </if>
+      <if test="reserve08 != null" >
+        reserve08,
+      </if>
+      <if test="reserve09 != null" >
+        reserve09,
+      </if>
+      <if test="reserve10 != null" >
+        reserve10,
+      </if>
+      <if test="isdelete != null" >
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberid != null" >
+        #{memberid,jdbcType=BIGINT},
+      </if>
+      <if test="membername != null" >
+        #{membername,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve01 != null" >
+        #{reserve01,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve02 != null" >
+        #{reserve02,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve03 != null" >
+        #{reserve03,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve04 != null" >
+        #{reserve04,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve05 != null" >
+        #{reserve05,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve06 != null" >
+        #{reserve06,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve07 != null" >
+        #{reserve07,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve08 != null" >
+        #{reserve08,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve09 != null" >
+        #{reserve09,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve10 != null" >
+        #{reserve10,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Member" >
+    update member
+    <set >
+      <if test="membername != null" >
+        memberName = #{membername,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve01 != null" >
+        reserve01 = #{reserve01,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve02 != null" >
+        reserve02 = #{reserve02,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve03 != null" >
+        reserve03 = #{reserve03,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve04 != null" >
+        reserve04 = #{reserve04,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve05 != null" >
+        reserve05 = #{reserve05,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve06 != null" >
+        reserve06 = #{reserve06,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve07 != null" >
+        reserve07 = #{reserve07,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve08 != null" >
+        reserve08 = #{reserve08,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve09 != null" >
+        reserve09 = #{reserve09,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve10 != null" >
+        reserve10 = #{reserve10,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null" >
+        isDelete = #{isdelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where memberId = #{memberid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Member" >
+    update member
+    set memberName = #{membername,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      reserve01 = #{reserve01,jdbcType=VARCHAR},
+      reserve02 = #{reserve02,jdbcType=VARCHAR},
+      reserve03 = #{reserve03,jdbcType=VARCHAR},
+      reserve04 = #{reserve04,jdbcType=VARCHAR},
+      reserve05 = #{reserve05,jdbcType=VARCHAR},
+      reserve06 = #{reserve06,jdbcType=VARCHAR},
+      reserve07 = #{reserve07,jdbcType=VARCHAR},
+      reserve08 = #{reserve08,jdbcType=VARCHAR},
+      reserve09 = #{reserve09,jdbcType=VARCHAR},
+      reserve10 = #{reserve10,jdbcType=VARCHAR},
+      isDelete = #{isdelete,jdbcType=SMALLINT}
+    where memberId = #{memberid,jdbcType=BIGINT}
+  </update>
+</mapper>

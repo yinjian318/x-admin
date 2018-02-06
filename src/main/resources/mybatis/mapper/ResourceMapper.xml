@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Resource" >
+    <constructor >
+      <idArg column="resourceId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="parentId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="resourceCode" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resourceName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="resourceType" jdbcType="DECIMAL" javaType="java.lang.Short" />
+      <arg column="resourceUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iconUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iconName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="hasChild" jdbcType="DECIMAL" javaType="java.lang.Short" />
+      <arg column="delFlag" jdbcType="DECIMAL" javaType="java.lang.Short" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="createUserId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="createUserAccount" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="createUserName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateUserId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="updateUserAccount" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="updateUserName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve01" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve02" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve03" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve04" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve05" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve06" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve07" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve08" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve09" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve10" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resourceId, parentId, resourceCode, resourceName, resourceType, resourceUrl, iconUrl, 
+    iconName, hasChild, delFlag, createTime, createUserId, createUserAccount, createUserName, 
+    updateTime, updateUserId, updateUserAccount, updateUserName, reserve01, reserve02, 
+    reserve03, reserve04, reserve05, reserve06, reserve07, reserve08, reserve09, reserve10
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where resourceId = #{resourceid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from resource
+    where resourceId = #{resourceid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.model.Resource" >
+    insert into resource (resourceId, parentId, resourceCode, 
+      resourceName, resourceType, resourceUrl, 
+      iconUrl, iconName, hasChild, 
+      delFlag, createTime, createUserId, 
+      createUserAccount, createUserName, updateTime, 
+      updateUserId, updateUserAccount, updateUserName, 
+      reserve01, reserve02, reserve03, 
+      reserve04, reserve05, reserve06, 
+      reserve07, reserve08, reserve09, 
+      reserve10)
+    values (#{resourceid,jdbcType=BIGINT}, #{parentid,jdbcType=BIGINT}, #{resourcecode,jdbcType=VARCHAR}, 
+      #{resourcename,jdbcType=VARCHAR}, #{resourcetype,jdbcType=DECIMAL}, #{resourceurl,jdbcType=VARCHAR}, 
+      #{iconurl,jdbcType=VARCHAR}, #{iconname,jdbcType=VARCHAR}, #{haschild,jdbcType=DECIMAL}, 
+      #{delflag,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{createuserid,jdbcType=BIGINT}, 
+      #{createuseraccount,jdbcType=VARCHAR}, #{createusername,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{updateuserid,jdbcType=BIGINT}, #{updateuseraccount,jdbcType=VARCHAR}, #{updateusername,jdbcType=VARCHAR}, 
+      #{reserve01,jdbcType=VARCHAR}, #{reserve02,jdbcType=VARCHAR}, #{reserve03,jdbcType=VARCHAR}, 
+      #{reserve04,jdbcType=VARCHAR}, #{reserve05,jdbcType=VARCHAR}, #{reserve06,jdbcType=VARCHAR}, 
+      #{reserve07,jdbcType=VARCHAR}, #{reserve08,jdbcType=VARCHAR}, #{reserve09,jdbcType=VARCHAR}, 
+      #{reserve10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Resource" >
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceid != null" >
+        resourceId,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+      <if test="resourcecode != null" >
+        resourceCode,
+      </if>
+      <if test="resourcename != null" >
+        resourceName,
+      </if>
+      <if test="resourcetype != null" >
+        resourceType,
+      </if>
+      <if test="resourceurl != null" >
+        resourceUrl,
+      </if>
+      <if test="iconurl != null" >
+        iconUrl,
+      </if>
+      <if test="iconname != null" >
+        iconName,
+      </if>
+      <if test="haschild != null" >
+        hasChild,
+      </if>
+      <if test="delflag != null" >
+        delFlag,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="createuserid != null" >
+        createUserId,
+      </if>
+      <if test="createuseraccount != null" >
+        createUserAccount,
+      </if>
+      <if test="createusername != null" >
+        createUserName,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="updateuserid != null" >
+        updateUserId,
+      </if>
+      <if test="updateuseraccount != null" >
+        updateUserAccount,
+      </if>
+      <if test="updateusername != null" >
+        updateUserName,
+      </if>
+      <if test="reserve01 != null" >
+        reserve01,
+      </if>
+      <if test="reserve02 != null" >
+        reserve02,
+      </if>
+      <if test="reserve03 != null" >
+        reserve03,
+      </if>
+      <if test="reserve04 != null" >
+        reserve04,
+      </if>
+      <if test="reserve05 != null" >
+        reserve05,
+      </if>
+      <if test="reserve06 != null" >
+        reserve06,
+      </if>
+      <if test="reserve07 != null" >
+        reserve07,
+      </if>
+      <if test="reserve08 != null" >
+        reserve08,
+      </if>
+      <if test="reserve09 != null" >
+        reserve09,
+      </if>
+      <if test="reserve10 != null" >
+        reserve10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceid != null" >
+        #{resourceid,jdbcType=BIGINT},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="resourcecode != null" >
+        #{resourcecode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcename != null" >
+        #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcetype != null" >
+        #{resourcetype,jdbcType=DECIMAL},
+      </if>
+      <if test="resourceurl != null" >
+        #{resourceurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null" >
+        #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconname != null" >
+        #{iconname,jdbcType=VARCHAR},
+      </if>
+      <if test="haschild != null" >
+        #{haschild,jdbcType=DECIMAL},
+      </if>
+      <if test="delflag != null" >
+        #{delflag,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        #{createuserid,jdbcType=BIGINT},
+      </if>
+      <if test="createuseraccount != null" >
+        #{createuseraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null" >
+        #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuserid != null" >
+        #{updateuserid,jdbcType=BIGINT},
+      </if>
+      <if test="updateuseraccount != null" >
+        #{updateuseraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateusername != null" >
+        #{updateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve01 != null" >
+        #{reserve01,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve02 != null" >
+        #{reserve02,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve03 != null" >
+        #{reserve03,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve04 != null" >
+        #{reserve04,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve05 != null" >
+        #{reserve05,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve06 != null" >
+        #{reserve06,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve07 != null" >
+        #{reserve07,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve08 != null" >
+        #{reserve08,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve09 != null" >
+        #{reserve09,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve10 != null" >
+        #{reserve10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Resource" >
+    update resource
+    <set >
+      <if test="parentid != null" >
+        parentId = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="resourcecode != null" >
+        resourceCode = #{resourcecode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcename != null" >
+        resourceName = #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcetype != null" >
+        resourceType = #{resourcetype,jdbcType=DECIMAL},
+      </if>
+      <if test="resourceurl != null" >
+        resourceUrl = #{resourceurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null" >
+        iconUrl = #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconname != null" >
+        iconName = #{iconname,jdbcType=VARCHAR},
+      </if>
+      <if test="haschild != null" >
+        hasChild = #{haschild,jdbcType=DECIMAL},
+      </if>
+      <if test="delflag != null" >
+        delFlag = #{delflag,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuserid != null" >
+        createUserId = #{createuserid,jdbcType=BIGINT},
+      </if>
+      <if test="createuseraccount != null" >
+        createUserAccount = #{createuseraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null" >
+        createUserName = #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuserid != null" >
+        updateUserId = #{updateuserid,jdbcType=BIGINT},
+      </if>
+      <if test="updateuseraccount != null" >
+        updateUserAccount = #{updateuseraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateusername != null" >
+        updateUserName = #{updateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve01 != null" >
+        reserve01 = #{reserve01,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve02 != null" >
+        reserve02 = #{reserve02,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve03 != null" >
+        reserve03 = #{reserve03,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve04 != null" >
+        reserve04 = #{reserve04,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve05 != null" >
+        reserve05 = #{reserve05,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve06 != null" >
+        reserve06 = #{reserve06,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve07 != null" >
+        reserve07 = #{reserve07,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve08 != null" >
+        reserve08 = #{reserve08,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve09 != null" >
+        reserve09 = #{reserve09,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve10 != null" >
+        reserve10 = #{reserve10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resourceId = #{resourceid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Resource" >
+    update resource
+    set parentId = #{parentid,jdbcType=BIGINT},
+      resourceCode = #{resourcecode,jdbcType=VARCHAR},
+      resourceName = #{resourcename,jdbcType=VARCHAR},
+      resourceType = #{resourcetype,jdbcType=DECIMAL},
+      resourceUrl = #{resourceurl,jdbcType=VARCHAR},
+      iconUrl = #{iconurl,jdbcType=VARCHAR},
+      iconName = #{iconname,jdbcType=VARCHAR},
+      hasChild = #{haschild,jdbcType=DECIMAL},
+      delFlag = #{delflag,jdbcType=DECIMAL},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      createUserId = #{createuserid,jdbcType=BIGINT},
+      createUserAccount = #{createuseraccount,jdbcType=VARCHAR},
+      createUserName = #{createusername,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      updateUserId = #{updateuserid,jdbcType=BIGINT},
+      updateUserAccount = #{updateuseraccount,jdbcType=VARCHAR},
+      updateUserName = #{updateusername,jdbcType=VARCHAR},
+      reserve01 = #{reserve01,jdbcType=VARCHAR},
+      reserve02 = #{reserve02,jdbcType=VARCHAR},
+      reserve03 = #{reserve03,jdbcType=VARCHAR},
+      reserve04 = #{reserve04,jdbcType=VARCHAR},
+      reserve05 = #{reserve05,jdbcType=VARCHAR},
+      reserve06 = #{reserve06,jdbcType=VARCHAR},
+      reserve07 = #{reserve07,jdbcType=VARCHAR},
+      reserve08 = #{reserve08,jdbcType=VARCHAR},
+      reserve09 = #{reserve09,jdbcType=VARCHAR},
+      reserve10 = #{reserve10,jdbcType=VARCHAR}
+    where resourceId = #{resourceid,jdbcType=BIGINT}
+  </update>
+</mapper>
