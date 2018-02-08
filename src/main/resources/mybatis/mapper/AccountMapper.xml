@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Account" >
+    <constructor >
+      <idArg column="accountId" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="loginAccount" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve01" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve02" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve03" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve04" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve05" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve06" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve07" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve08" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve09" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="reserve10" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="idDelete" jdbcType="SMALLINT" javaType="java.lang.Short" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    accountId, loginAccount, password, reserve01, reserve02, reserve03, reserve04, reserve05, 
+    reserve06, reserve07, reserve08, reserve09, reserve10, idDelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where accountId = #{accountId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from account
+    where accountId = #{accountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.model.Account" >
+    insert into account (accountId, loginAccount, password, 
+      reserve01, reserve02, reserve03, 
+      reserve04, reserve05, reserve06, 
+      reserve07, reserve08, reserve09, 
+      reserve10, idDelete)
+    values (#{accountId,jdbcType=BIGINT}, #{loginAccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{reserve01,jdbcType=VARCHAR}, #{reserve02,jdbcType=VARCHAR}, #{reserve03,jdbcType=VARCHAR}, 
+      #{reserve04,jdbcType=VARCHAR}, #{reserve05,jdbcType=VARCHAR}, #{reserve06,jdbcType=VARCHAR}, 
+      #{reserve07,jdbcType=VARCHAR}, #{reserve08,jdbcType=VARCHAR}, #{reserve09,jdbcType=VARCHAR}, 
+      #{reserve10,jdbcType=VARCHAR}, #{idDelete,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Account" >
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        accountId,
+      </if>
+      <if test="loginAccount != null" >
+        loginAccount,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="reserve01 != null" >
+        reserve01,
+      </if>
+      <if test="reserve02 != null" >
+        reserve02,
+      </if>
+      <if test="reserve03 != null" >
+        reserve03,
+      </if>
+      <if test="reserve04 != null" >
+        reserve04,
+      </if>
+      <if test="reserve05 != null" >
+        reserve05,
+      </if>
+      <if test="reserve06 != null" >
+        reserve06,
+      </if>
+      <if test="reserve07 != null" >
+        reserve07,
+      </if>
+      <if test="reserve08 != null" >
+        reserve08,
+      </if>
+      <if test="reserve09 != null" >
+        reserve09,
+      </if>
+      <if test="reserve10 != null" >
+        reserve10,
+      </if>
+      <if test="idDelete != null" >
+        idDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="loginAccount != null" >
+        #{loginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve01 != null" >
+        #{reserve01,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve02 != null" >
+        #{reserve02,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve03 != null" >
+        #{reserve03,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve04 != null" >
+        #{reserve04,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve05 != null" >
+        #{reserve05,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve06 != null" >
+        #{reserve06,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve07 != null" >
+        #{reserve07,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve08 != null" >
+        #{reserve08,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve09 != null" >
+        #{reserve09,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve10 != null" >
+        #{reserve10,jdbcType=VARCHAR},
+      </if>
+      <if test="idDelete != null" >
+        #{idDelete,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Account" >
+    update account
+    <set >
+      <if test="loginAccount != null" >
+        loginAccount = #{loginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve01 != null" >
+        reserve01 = #{reserve01,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve02 != null" >
+        reserve02 = #{reserve02,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve03 != null" >
+        reserve03 = #{reserve03,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve04 != null" >
+        reserve04 = #{reserve04,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve05 != null" >
+        reserve05 = #{reserve05,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve06 != null" >
+        reserve06 = #{reserve06,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve07 != null" >
+        reserve07 = #{reserve07,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve08 != null" >
+        reserve08 = #{reserve08,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve09 != null" >
+        reserve09 = #{reserve09,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve10 != null" >
+        reserve10 = #{reserve10,jdbcType=VARCHAR},
+      </if>
+      <if test="idDelete != null" >
+        idDelete = #{idDelete,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where accountId = #{accountId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Account" >
+    update account
+    set loginAccount = #{loginAccount,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      reserve01 = #{reserve01,jdbcType=VARCHAR},
+      reserve02 = #{reserve02,jdbcType=VARCHAR},
+      reserve03 = #{reserve03,jdbcType=VARCHAR},
+      reserve04 = #{reserve04,jdbcType=VARCHAR},
+      reserve05 = #{reserve05,jdbcType=VARCHAR},
+      reserve06 = #{reserve06,jdbcType=VARCHAR},
+      reserve07 = #{reserve07,jdbcType=VARCHAR},
+      reserve08 = #{reserve08,jdbcType=VARCHAR},
+      reserve09 = #{reserve09,jdbcType=VARCHAR},
+      reserve10 = #{reserve10,jdbcType=VARCHAR},
+      idDelete = #{idDelete,jdbcType=SMALLINT}
+    where accountId = #{accountId,jdbcType=BIGINT}
+  </update>
+</mapper>
