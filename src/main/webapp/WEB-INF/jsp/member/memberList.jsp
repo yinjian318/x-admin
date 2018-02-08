@@ -36,9 +36,9 @@
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so" id="searchForm" action="${ctx}/member/queryMemberList.do" method="post">
-          <input class="layui-input" placeholder="开始日" name="start" id="start">
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
-          <input type="text" name="membername"  placeholder="请输入会员名" autocomplete="off" class="layui-input">
+         <%-- <input class="layui-input" placeholder="开始日" name="start" id="start">
+          <input class="layui-input" placeholder="截止日" name="end" id="end">--%>
+          <input type="text" name="memberName"  placeholder="请输入会员名" autocomplete="off" class="layui-input">
           <button class="layui-btn" onclick="search()" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
@@ -65,6 +65,7 @@
         </thead>
         <tbody>
         <c:forEach var="list" items="${memberList}" varStatus="status">
+          <tr>
             <td>
               <input type="checkbox">
             </td>
@@ -91,15 +92,48 @@
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
+          </tr>
         </c:forEach>
         </tbody>
       </table>
 
+     <p class="paging" id="paging">
+        <input type="hidden" id="page" value="${pageInfo.pageNum}">
+        <input type="hidden" id="totlepage" value="${pageInfo.pages}">
+        <input type="hidden" id="prev" value="${pageInfo.prePage}">
+        <input type="hidden" id="next" value="${pageInfo.nextPage}">
 
+      </p>
+      <%--<div id="demo">
+        <input type="hidden" id="totlepage" value="${pageInfo.pages}">
+        <input type="hidden" id="count" value="${pageInfo.total}">
+
+      </div>--%>
 
     </div>
-    <script type="text/javascript" src="${ctx}/lib/layui/lay/modules/layer.js"></script>
+    <script type="text/javascript" src="${ctx}/layer/layer.js"></script>
+    <script type="text/javascript" src="${ctx}/js/common1.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctx}/plugins/layui/layui.js"></script>
     <script type="text/javascript">
+      /*  layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            var count = $("#count").val();
+            //完整功能
+            laypage.render({
+                elem: 'demo'
+                ,count: 100
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj){
+                    console.log(obj)
+                }
+            });
+
+
+        });*/
+
+
         function search(){
             $("#searchForm").submit();
         }

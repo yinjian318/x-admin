@@ -43,11 +43,34 @@
     select 
     <include refid="Base_Column_List" />
     from resource
-    where resourceId = #{resourceid,jdbcType=BIGINT}
+    where resourceId = #{resourceId,jdbcType=BIGINT}
   </select>
+  <select id="selectAll" parameterType="com.model.Resource" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM
+    resource
+    WHERE
+    delFlag = 0
+    <if test="resourceCode != null">
+      AND resourceCode LIKE CONCAT(#{resourceCode},'%')
+    </if>
+    <if test="resourceName != null">
+      AND resourceName LIKE CONCAT('%',#{resourceName},'%')
+    </if>
+  </select>
+  <select id="selectByParentId" resultType="com.model.Resource" parameterType="com.model.Resource">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM
+    resource
+    WHERE
+    delFlag = 0 AND parentId = #{parentId,jdbcType=BIGINT}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from resource
-    where resourceId = #{resourceid,jdbcType=BIGINT}
+    where resourceId = #{resourceId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.model.Resource" >
     insert into resource (resourceId, parentId, resourceCode, 
@@ -60,12 +83,12 @@
       reserve04, reserve05, reserve06, 
       reserve07, reserve08, reserve09, 
       reserve10)
-    values (#{resourceid,jdbcType=BIGINT}, #{parentid,jdbcType=BIGINT}, #{resourcecode,jdbcType=VARCHAR}, 
-      #{resourcename,jdbcType=VARCHAR}, #{resourcetype,jdbcType=DECIMAL}, #{resourceurl,jdbcType=VARCHAR}, 
-      #{iconurl,jdbcType=VARCHAR}, #{iconname,jdbcType=VARCHAR}, #{haschild,jdbcType=DECIMAL}, 
-      #{delflag,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{createuserid,jdbcType=BIGINT}, 
-      #{createuseraccount,jdbcType=VARCHAR}, #{createusername,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
-      #{updateuserid,jdbcType=BIGINT}, #{updateuseraccount,jdbcType=VARCHAR}, #{updateusername,jdbcType=VARCHAR}, 
+    values (#{resourceId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{resourceCode,jdbcType=VARCHAR}, 
+      #{resourceName,jdbcType=VARCHAR}, #{resourceType,jdbcType=DECIMAL}, #{resourceUrl,jdbcType=VARCHAR}, 
+      #{iconUrl,jdbcType=VARCHAR}, #{iconName,jdbcType=VARCHAR}, #{hasChild,jdbcType=DECIMAL}, 
+      #{delFlag,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=BIGINT}, 
+      #{createUserAccount,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=BIGINT}, #{updateUserAccount,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, 
       #{reserve01,jdbcType=VARCHAR}, #{reserve02,jdbcType=VARCHAR}, #{reserve03,jdbcType=VARCHAR}, 
       #{reserve04,jdbcType=VARCHAR}, #{reserve05,jdbcType=VARCHAR}, #{reserve06,jdbcType=VARCHAR}, 
       #{reserve07,jdbcType=VARCHAR}, #{reserve08,jdbcType=VARCHAR}, #{reserve09,jdbcType=VARCHAR}, 
@@ -74,58 +97,58 @@
   <insert id="insertSelective" parameterType="com.model.Resource" >
     insert into resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="resourceid != null" >
+      <if test="resourceId != null" >
         resourceId,
       </if>
-      <if test="parentid != null" >
+      <if test="parentId != null" >
         parentId,
       </if>
-      <if test="resourcecode != null" >
+      <if test="resourceCode != null" >
         resourceCode,
       </if>
-      <if test="resourcename != null" >
+      <if test="resourceName != null" >
         resourceName,
       </if>
-      <if test="resourcetype != null" >
+      <if test="resourceType != null" >
         resourceType,
       </if>
-      <if test="resourceurl != null" >
+      <if test="resourceUrl != null" >
         resourceUrl,
       </if>
-      <if test="iconurl != null" >
+      <if test="iconUrl != null" >
         iconUrl,
       </if>
-      <if test="iconname != null" >
+      <if test="iconName != null" >
         iconName,
       </if>
-      <if test="haschild != null" >
+      <if test="hasChild != null" >
         hasChild,
       </if>
-      <if test="delflag != null" >
+      <if test="delFlag != null" >
         delFlag,
       </if>
-      <if test="createtime != null" >
+      <if test="createTime != null" >
         createTime,
       </if>
-      <if test="createuserid != null" >
+      <if test="createUserId != null" >
         createUserId,
       </if>
-      <if test="createuseraccount != null" >
+      <if test="createUserAccount != null" >
         createUserAccount,
       </if>
-      <if test="createusername != null" >
+      <if test="createUserName != null" >
         createUserName,
       </if>
-      <if test="updatetime != null" >
+      <if test="updateTime != null" >
         updateTime,
       </if>
-      <if test="updateuserid != null" >
+      <if test="updateUserId != null" >
         updateUserId,
       </if>
-      <if test="updateuseraccount != null" >
+      <if test="updateUserAccount != null" >
         updateUserAccount,
       </if>
-      <if test="updateusername != null" >
+      <if test="updateUserName != null" >
         updateUserName,
       </if>
       <if test="reserve01 != null" >
@@ -160,59 +183,59 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="resourceid != null" >
-        #{resourceid,jdbcType=BIGINT},
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=BIGINT},
       </if>
-      <if test="parentid != null" >
-        #{parentid,jdbcType=BIGINT},
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
       </if>
-      <if test="resourcecode != null" >
-        #{resourcecode,jdbcType=VARCHAR},
+      <if test="resourceCode != null" >
+        #{resourceCode,jdbcType=VARCHAR},
       </if>
-      <if test="resourcename != null" >
-        #{resourcename,jdbcType=VARCHAR},
+      <if test="resourceName != null" >
+        #{resourceName,jdbcType=VARCHAR},
       </if>
-      <if test="resourcetype != null" >
-        #{resourcetype,jdbcType=DECIMAL},
+      <if test="resourceType != null" >
+        #{resourceType,jdbcType=DECIMAL},
       </if>
-      <if test="resourceurl != null" >
-        #{resourceurl,jdbcType=VARCHAR},
+      <if test="resourceUrl != null" >
+        #{resourceUrl,jdbcType=VARCHAR},
       </if>
-      <if test="iconurl != null" >
-        #{iconurl,jdbcType=VARCHAR},
+      <if test="iconUrl != null" >
+        #{iconUrl,jdbcType=VARCHAR},
       </if>
-      <if test="iconname != null" >
-        #{iconname,jdbcType=VARCHAR},
+      <if test="iconName != null" >
+        #{iconName,jdbcType=VARCHAR},
       </if>
-      <if test="haschild != null" >
-        #{haschild,jdbcType=DECIMAL},
+      <if test="hasChild != null" >
+        #{hasChild,jdbcType=DECIMAL},
       </if>
-      <if test="delflag != null" >
-        #{delflag,jdbcType=DECIMAL},
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=DECIMAL},
       </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createuserid != null" >
-        #{createuserid,jdbcType=BIGINT},
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
       </if>
-      <if test="createuseraccount != null" >
-        #{createuseraccount,jdbcType=VARCHAR},
+      <if test="createUserAccount != null" >
+        #{createUserAccount,jdbcType=VARCHAR},
       </if>
-      <if test="createusername != null" >
-        #{createusername,jdbcType=VARCHAR},
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
       </if>
-      <if test="updatetime != null" >
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateuserid != null" >
-        #{updateuserid,jdbcType=BIGINT},
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=BIGINT},
       </if>
-      <if test="updateuseraccount != null" >
-        #{updateuseraccount,jdbcType=VARCHAR},
+      <if test="updateUserAccount != null" >
+        #{updateUserAccount,jdbcType=VARCHAR},
       </if>
-      <if test="updateusername != null" >
-        #{updateusername,jdbcType=VARCHAR},
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
       </if>
       <if test="reserve01 != null" >
         #{reserve01,jdbcType=VARCHAR},
@@ -249,56 +272,56 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.model.Resource" >
     update resource
     <set >
-      <if test="parentid != null" >
-        parentId = #{parentid,jdbcType=BIGINT},
+      <if test="parentId != null" >
+        parentId = #{parentId,jdbcType=BIGINT},
       </if>
-      <if test="resourcecode != null" >
-        resourceCode = #{resourcecode,jdbcType=VARCHAR},
+      <if test="resourceCode != null" >
+        resourceCode = #{resourceCode,jdbcType=VARCHAR},
       </if>
-      <if test="resourcename != null" >
-        resourceName = #{resourcename,jdbcType=VARCHAR},
+      <if test="resourceName != null" >
+        resourceName = #{resourceName,jdbcType=VARCHAR},
       </if>
-      <if test="resourcetype != null" >
-        resourceType = #{resourcetype,jdbcType=DECIMAL},
+      <if test="resourceType != null" >
+        resourceType = #{resourceType,jdbcType=DECIMAL},
       </if>
-      <if test="resourceurl != null" >
-        resourceUrl = #{resourceurl,jdbcType=VARCHAR},
+      <if test="resourceUrl != null" >
+        resourceUrl = #{resourceUrl,jdbcType=VARCHAR},
       </if>
-      <if test="iconurl != null" >
-        iconUrl = #{iconurl,jdbcType=VARCHAR},
+      <if test="iconUrl != null" >
+        iconUrl = #{iconUrl,jdbcType=VARCHAR},
       </if>
-      <if test="iconname != null" >
-        iconName = #{iconname,jdbcType=VARCHAR},
+      <if test="iconName != null" >
+        iconName = #{iconName,jdbcType=VARCHAR},
       </if>
-      <if test="haschild != null" >
-        hasChild = #{haschild,jdbcType=DECIMAL},
+      <if test="hasChild != null" >
+        hasChild = #{hasChild,jdbcType=DECIMAL},
       </if>
-      <if test="delflag != null" >
-        delFlag = #{delflag,jdbcType=DECIMAL},
+      <if test="delFlag != null" >
+        delFlag = #{delFlag,jdbcType=DECIMAL},
       </if>
-      <if test="createtime != null" >
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createuserid != null" >
-        createUserId = #{createuserid,jdbcType=BIGINT},
+      <if test="createUserId != null" >
+        createUserId = #{createUserId,jdbcType=BIGINT},
       </if>
-      <if test="createuseraccount != null" >
-        createUserAccount = #{createuseraccount,jdbcType=VARCHAR},
+      <if test="createUserAccount != null" >
+        createUserAccount = #{createUserAccount,jdbcType=VARCHAR},
       </if>
-      <if test="createusername != null" >
-        createUserName = #{createusername,jdbcType=VARCHAR},
+      <if test="createUserName != null" >
+        createUserName = #{createUserName,jdbcType=VARCHAR},
       </if>
-      <if test="updatetime != null" >
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateuserid != null" >
-        updateUserId = #{updateuserid,jdbcType=BIGINT},
+      <if test="updateUserId != null" >
+        updateUserId = #{updateUserId,jdbcType=BIGINT},
       </if>
-      <if test="updateuseraccount != null" >
-        updateUserAccount = #{updateuseraccount,jdbcType=VARCHAR},
+      <if test="updateUserAccount != null" >
+        updateUserAccount = #{updateUserAccount,jdbcType=VARCHAR},
       </if>
-      <if test="updateusername != null" >
-        updateUserName = #{updateusername,jdbcType=VARCHAR},
+      <if test="updateUserName != null" >
+        updateUserName = #{updateUserName,jdbcType=VARCHAR},
       </if>
       <if test="reserve01 != null" >
         reserve01 = #{reserve01,jdbcType=VARCHAR},
@@ -331,27 +354,27 @@
         reserve10 = #{reserve10,jdbcType=VARCHAR},
       </if>
     </set>
-    where resourceId = #{resourceid,jdbcType=BIGINT}
+    where resourceId = #{resourceId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.model.Resource" >
     update resource
-    set parentId = #{parentid,jdbcType=BIGINT},
-      resourceCode = #{resourcecode,jdbcType=VARCHAR},
-      resourceName = #{resourcename,jdbcType=VARCHAR},
-      resourceType = #{resourcetype,jdbcType=DECIMAL},
-      resourceUrl = #{resourceurl,jdbcType=VARCHAR},
-      iconUrl = #{iconurl,jdbcType=VARCHAR},
-      iconName = #{iconname,jdbcType=VARCHAR},
-      hasChild = #{haschild,jdbcType=DECIMAL},
-      delFlag = #{delflag,jdbcType=DECIMAL},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      createUserId = #{createuserid,jdbcType=BIGINT},
-      createUserAccount = #{createuseraccount,jdbcType=VARCHAR},
-      createUserName = #{createusername,jdbcType=VARCHAR},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      updateUserId = #{updateuserid,jdbcType=BIGINT},
-      updateUserAccount = #{updateuseraccount,jdbcType=VARCHAR},
-      updateUserName = #{updateusername,jdbcType=VARCHAR},
+    set parentId = #{parentId,jdbcType=BIGINT},
+      resourceCode = #{resourceCode,jdbcType=VARCHAR},
+      resourceName = #{resourceName,jdbcType=VARCHAR},
+      resourceType = #{resourceType,jdbcType=DECIMAL},
+      resourceUrl = #{resourceUrl,jdbcType=VARCHAR},
+      iconUrl = #{iconUrl,jdbcType=VARCHAR},
+      iconName = #{iconName,jdbcType=VARCHAR},
+      hasChild = #{hasChild,jdbcType=DECIMAL},
+      delFlag = #{delFlag,jdbcType=DECIMAL},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      createUserId = #{createUserId,jdbcType=BIGINT},
+      createUserAccount = #{createUserAccount,jdbcType=VARCHAR},
+      createUserName = #{createUserName,jdbcType=VARCHAR},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      updateUserId = #{updateUserId,jdbcType=BIGINT},
+      updateUserAccount = #{updateUserAccount,jdbcType=VARCHAR},
+      updateUserName = #{updateUserName,jdbcType=VARCHAR},
       reserve01 = #{reserve01,jdbcType=VARCHAR},
       reserve02 = #{reserve02,jdbcType=VARCHAR},
       reserve03 = #{reserve03,jdbcType=VARCHAR},
@@ -362,6 +385,6 @@
       reserve08 = #{reserve08,jdbcType=VARCHAR},
       reserve09 = #{reserve09,jdbcType=VARCHAR},
       reserve10 = #{reserve10,jdbcType=VARCHAR}
-    where resourceId = #{resourceid,jdbcType=BIGINT}
+    where resourceId = #{resourceId,jdbcType=BIGINT}
   </update>
 </mapper>

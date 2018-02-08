@@ -22,7 +22,7 @@
 <body class="login-bg">
     
     <div class="login">
-        <div class="message">x-admin2.0-管理登录</div>
+        <div class="message">管理登录</div>
         <div id="darkbannerwrap"></div>
         
         <form method="post" class="layui-form" >
@@ -46,7 +46,7 @@
               form.on('submit(login)', function(data){
                 // alert(888)
                 layer.msg(JSON.stringify(data.field),function(){
-                    location.href='index.jsp'
+                    location.href='index.html'
                 });
                 return false;
               });

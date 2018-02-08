@@ -25,19 +25,19 @@ public class Resource {
 
     private Date createTime;
 
-    private Long createuserId;
+    private Long createUserId;
 
-    private String createuserAccount;
+    private String createUserAccount;
 
-    private String createuserName;
+    private String createUserName;
 
     private Date updateTime;
 
-    private Long updateuserId;
+    private Long updateUserId;
 
-    private String updateuserAccount;
+    private String updateUserAccount;
 
-    private String updateuserName;
+    private String updateUserName;
 
     private String reserve01;
 
@@ -58,6 +58,41 @@ public class Resource {
     private String reserve09;
 
     private String reserve10;
+
+    public Resource(Long resourceId, Long parentId, String resourceCode, String resourceName, Short resourceType, String resourceUrl, String iconUrl, String iconName, Short hasChild, Short delFlag, Date createTime, Long createUserId, String createUserAccount, String createUserName, Date updateTime, Long updateUserId, String updateUserAccount, String updateUserName, String reserve01, String reserve02, String reserve03, String reserve04, String reserve05, String reserve06, String reserve07, String reserve08, String reserve09, String reserve10) {
+        this.resourceId = resourceId;
+        this.parentId = parentId;
+        this.resourceCode = resourceCode;
+        this.resourceName = resourceName;
+        this.resourceType = resourceType;
+        this.resourceUrl = resourceUrl;
+        this.iconUrl = iconUrl;
+        this.iconName = iconName;
+        this.hasChild = hasChild;
+        this.delFlag = delFlag;
+        this.createTime = createTime;
+        this.createUserId = createUserId;
+        this.createUserAccount = createUserAccount;
+        this.createUserName = createUserName;
+        this.updateTime = updateTime;
+        this.updateUserId = updateUserId;
+        this.updateUserAccount = updateUserAccount;
+        this.updateUserName = updateUserName;
+        this.reserve01 = reserve01;
+        this.reserve02 = reserve02;
+        this.reserve03 = reserve03;
+        this.reserve04 = reserve04;
+        this.reserve05 = reserve05;
+        this.reserve06 = reserve06;
+        this.reserve07 = reserve07;
+        this.reserve08 = reserve08;
+        this.reserve09 = reserve09;
+        this.reserve10 = reserve10;
+    }
+
+    public Resource() {
+        super();
+    }
 
     public Long getResourceId() {
         return resourceId;
@@ -80,7 +115,7 @@ public class Resource {
     }
 
     public void setResourceCode(String resourceCode) {
-        this.resourceCode = resourceCode;
+        this.resourceCode = resourceCode == null ? null : resourceCode.trim();
     }
 
     public String getResourceName() {
@@ -88,7 +123,7 @@ public class Resource {
     }
 
     public void setResourceName(String resourceName) {
-        this.resourceName = resourceName;
+        this.resourceName = resourceName == null ? null : resourceName.trim();
     }
 
     public Short getResourceType() {
@@ -104,7 +139,7 @@ public class Resource {
     }
 
     public void setResourceUrl(String resourceUrl) {
-        this.resourceUrl = resourceUrl;
+        this.resourceUrl = resourceUrl == null ? null : resourceUrl.trim();
     }
 
     public String getIconUrl() {
@@ -112,7 +147,7 @@ public class Resource {
     }
 
     public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
+        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
     }
 
     public String getIconName() {
@@ -120,7 +155,7 @@ public class Resource {
     }
 
     public void setIconName(String iconName) {
-        this.iconName = iconName;
+        this.iconName = iconName == null ? null : iconName.trim();
     }
 
     public Short getHasChild() {
@@ -147,28 +182,28 @@ public class Resource {
         this.createTime = createTime;
     }
 
-    public Long getCreateuserId() {
-        return createuserId;
+    public Long getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCreateuserId(Long createuserId) {
-        this.createuserId = createuserId;
+    public void setCreateUserId(Long createUserId) {
+        this.createUserId = createUserId;
     }
 
-    public String getCreateuserAccount() {
-        return createuserAccount;
+    public String getCreateUserAccount() {
+        return createUserAccount;
     }
 
-    public void setCreateuserAccount(String createuserAccount) {
-        this.createuserAccount = createuserAccount;
+    public void setCreateUserAccount(String createUserAccount) {
+        this.createUserAccount = createUserAccount == null ? null : createUserAccount.trim();
     }
 
-    public String getCreateuserName() {
-        return createuserName;
+    public String getCreateUserName() {
+        return createUserName;
     }
 
-    public void setCreateuserName(String createuserName) {
-        this.createuserName = createuserName;
+    public void setCreateUserName(String createUserName) {
+        this.createUserName = createUserName == null ? null : createUserName.trim();
     }
 
     public Date getUpdateTime() {
@@ -179,28 +214,28 @@ public class Resource {
         this.updateTime = updateTime;
     }
 
-    public Long getUpdateuserId() {
-        return updateuserId;
+    public Long getUpdateUserId() {
+        return updateUserId;
     }
 
-    public void setUpdateuserId(Long updateuserId) {
-        this.updateuserId = updateuserId;
+    public void setUpdateUserId(Long updateUserId) {
+        this.updateUserId = updateUserId;
     }
 
-    public String getUpdateuserAccount() {
-        return updateuserAccount;
+    public String getUpdateUserAccount() {
+        return updateUserAccount;
     }
 
-    public void setUpdateuserAccount(String updateuserAccount) {
-        this.updateuserAccount = updateuserAccount;
+    public void setUpdateUserAccount(String updateUserAccount) {
+        this.updateUserAccount = updateUserAccount == null ? null : updateUserAccount.trim();
     }
 
-    public String getUpdateuserName() {
-        return updateuserName;
+    public String getUpdateUserName() {
+        return updateUserName;
     }
 
-    public void setUpdateuserName(String updateuserName) {
-        this.updateuserName = updateuserName;
+    public void setUpdateUserName(String updateUserName) {
+        this.updateUserName = updateUserName == null ? null : updateUserName.trim();
     }
 
     public String getReserve01() {
@@ -208,7 +243,7 @@ public class Resource {
     }
 
     public void setReserve01(String reserve01) {
-        this.reserve01 = reserve01;
+        this.reserve01 = reserve01 == null ? null : reserve01.trim();
     }
 
     public String getReserve02() {
@@ -216,7 +251,7 @@ public class Resource {
     }
 
     public void setReserve02(String reserve02) {
-        this.reserve02 = reserve02;
+        this.reserve02 = reserve02 == null ? null : reserve02.trim();
     }
 
     public String getReserve03() {
@@ -224,7 +259,7 @@ public class Resource {
     }
 
     public void setReserve03(String reserve03) {
-        this.reserve03 = reserve03;
+        this.reserve03 = reserve03 == null ? null : reserve03.trim();
     }
 
     public String getReserve04() {
@@ -232,7 +267,7 @@ public class Resource {
     }
 
     public void setReserve04(String reserve04) {
-        this.reserve04 = reserve04;
+        this.reserve04 = reserve04 == null ? null : reserve04.trim();
     }
 
     public String getReserve05() {
@@ -240,7 +275,7 @@ public class Resource {
     }
 
     public void setReserve05(String reserve05) {
-        this.reserve05 = reserve05;
+        this.reserve05 = reserve05 == null ? null : reserve05.trim();
     }
 
     public String getReserve06() {
@@ -248,7 +283,7 @@ public class Resource {
     }
 
     public void setReserve06(String reserve06) {
-        this.reserve06 = reserve06;
+        this.reserve06 = reserve06 == null ? null : reserve06.trim();
     }
 
     public String getReserve07() {
@@ -256,7 +291,7 @@ public class Resource {
     }
 
     public void setReserve07(String reserve07) {
-        this.reserve07 = reserve07;
+        this.reserve07 = reserve07 == null ? null : reserve07.trim();
     }
 
     public String getReserve08() {
@@ -264,7 +299,7 @@ public class Resource {
     }
 
     public void setReserve08(String reserve08) {
-        this.reserve08 = reserve08;
+        this.reserve08 = reserve08 == null ? null : reserve08.trim();
     }
 
     public String getReserve09() {
@@ -272,7 +307,7 @@ public class Resource {
     }
 
     public void setReserve09(String reserve09) {
-        this.reserve09 = reserve09;
+        this.reserve09 = reserve09 == null ? null : reserve09.trim();
     }
 
     public String getReserve10() {
@@ -280,40 +315,6 @@ public class Resource {
     }
 
     public void setReserve10(String reserve10) {
-        this.reserve10 = reserve10;
-    }
-
-    @Override
-    public String toString() {
-        return "Resource{" +
-                "resourceId=" + resourceId +
-                ", parentId=" + parentId +
-                ", resourceCode='" + resourceCode + '\'' +
-                ", resourceName='" + resourceName + '\'' +
-                ", resourceType=" + resourceType +
-                ", resourceUrl='" + resourceUrl + '\'' +
-                ", iconUrl='" + iconUrl + '\'' +
-                ", iconName='" + iconName + '\'' +
-                ", hasChild=" + hasChild +
-                ", delFlag=" + delFlag +
-                ", createTime=" + createTime +
-                ", createuserId=" + createuserId +
-                ", createuserAccount='" + createuserAccount + '\'' +
-                ", createuserName='" + createuserName + '\'' +
-                ", updateTime=" + updateTime +
-                ", updateuserId=" + updateuserId +
-                ", updateuserAccount='" + updateuserAccount + '\'' +
-                ", updateuserName='" + updateuserName + '\'' +
-                ", reserve01='" + reserve01 + '\'' +
-                ", reserve02='" + reserve02 + '\'' +
-                ", reserve03='" + reserve03 + '\'' +
-                ", reserve04='" + reserve04 + '\'' +
-                ", reserve05='" + reserve05 + '\'' +
-                ", reserve06='" + reserve06 + '\'' +
-                ", reserve07='" + reserve07 + '\'' +
-                ", reserve08='" + reserve08 + '\'' +
-                ", reserve09='" + reserve09 + '\'' +
-                ", reserve10='" + reserve10 + '\'' +
-                '}';
+        this.reserve10 = reserve10 == null ? null : reserve10.trim();
     }
 }

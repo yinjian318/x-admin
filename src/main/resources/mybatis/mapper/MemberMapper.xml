@@ -30,7 +30,7 @@
     select 
     <include refid="Base_Column_List" />
     from member
-    where memberId = #{memberid,jdbcType=BIGINT}
+    where memberId = #{memberId,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" parameterType="map">
     SELECT <include refid="Base_Column_List"></include>
@@ -38,13 +38,13 @@
     member
     WHERE isDelete = 0
     <if test="memberName != null and memberName != ''">
-      AND memberName = #{membername,jdbcType=VARCHAR}
+      AND memberName = #{memberName,jdbcType=VARCHAR}
     </if>
     order by memberId ASC
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from member
-    where memberId = #{memberid,jdbcType=BIGINT}
+    where memberId = #{memberId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.model.Member" >
     insert into member (memberId, memberName, sex, 
@@ -53,7 +53,7 @@
       reserve04, reserve05, reserve06, 
       reserve07, reserve08, reserve09, 
       reserve10, isDelete)
-    values (#{memberid,jdbcType=BIGINT}, #{membername,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+    values (#{memberId,jdbcType=BIGINT}, #{memberName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
       #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{reserve01,jdbcType=VARCHAR}, #{reserve02,jdbcType=VARCHAR}, #{reserve03,jdbcType=VARCHAR}, 
       #{reserve04,jdbcType=VARCHAR}, #{reserve05,jdbcType=VARCHAR}, #{reserve06,jdbcType=VARCHAR}, 
@@ -63,10 +63,10 @@
   <insert id="insertSelective" parameterType="com.model.Member" >
     insert into member
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="memberid != null" >
+      <if test="memberId != null" >
         memberId,
       </if>
-      <if test="membername != null" >
+      <if test="memberName != null" >
         memberName,
       </if>
       <if test="sex != null" >
@@ -116,10 +116,10 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="memberid != null" >
+      <if test="memberId != null" >
         #{memberid,jdbcType=BIGINT},
       </if>
-      <if test="membername != null" >
+      <if test="memberName != null" >
         #{membername,jdbcType=VARCHAR},
       </if>
       <if test="sex != null" >
@@ -172,8 +172,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.model.Member" >
     update member
     <set >
-      <if test="membername != null" >
-        memberName = #{membername,jdbcType=VARCHAR},
+      <if test="memberName != null" >
+        memberName = #{memberName,jdbcType=VARCHAR},
       </if>
       <if test="sex != null" >
         sex = #{sex,jdbcType=VARCHAR},
@@ -221,11 +221,11 @@
         isDelete = #{isdelete,jdbcType=SMALLINT},
       </if>
     </set>
-    where memberId = #{memberid,jdbcType=BIGINT}
+    where memberId = #{memberId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.model.Member" >
     update member
-    set memberName = #{membername,jdbcType=VARCHAR},
+    set memberName = #{memberName,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       age = #{age,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
@@ -241,6 +241,6 @@
       reserve09 = #{reserve09,jdbcType=VARCHAR},
       reserve10 = #{reserve10,jdbcType=VARCHAR},
       isDelete = #{isdelete,jdbcType=SMALLINT}
-    where memberId = #{memberid,jdbcType=BIGINT}
+    where memberId = #{memberId,jdbcType=BIGINT}
   </update>
 </mapper>

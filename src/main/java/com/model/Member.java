@@ -1,9 +1,9 @@
 package com.model;
 
 public class Member {
-    private Long memberid;
+    private Long memberId;
 
-    private String membername;
+    private String memberName;
 
     private String sex;
 
@@ -36,8 +36,8 @@ public class Member {
     private Short isdelete;
 
     public Member(Long memberid, String membername, String sex, String age, String tel, String address, String reserve01, String reserve02, String reserve03, String reserve04, String reserve05, String reserve06, String reserve07, String reserve08, String reserve09, String reserve10, Short isdelete) {
-        this.memberid = memberid;
-        this.membername = membername;
+        this.memberId = memberid;
+        this.memberName = membername;
         this.sex = sex;
         this.age = age;
         this.tel = tel;
@@ -60,19 +60,19 @@ public class Member {
     }
 
     public Long getMemberid() {
-        return memberid;
+        return memberId;
     }
 
     public void setMemberid(Long memberid) {
-        this.memberid = memberid;
+        this.memberId = memberid;
     }
 
     public String getMembername() {
-        return membername;
+        return memberName;
     }
 
     public void setMembername(String membername) {
-        this.membername = membername == null ? null : membername.trim();
+        this.memberName = membername == null ? null : memberName.trim();
     }
 
     public String getSex() {
