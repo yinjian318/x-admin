@@ -26,47 +26,51 @@
         <div id="darkbannerwrap"></div>
         
         <form method="post" class="layui-form" >
-            <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <input name="loginAccount" id="loginAccount" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
-            <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <input name="password" id="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
             <hr class="hr15">
-            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <input value="登录"  onclick="return login()" style="width:100%;" type="button">
             <hr class="hr20" >
         </form>
     </div>
 
     <script>
-        $(function  () {
-            layui.use('form', function(){
-              var form = layui.form;
-              // layer.msg('玩命卖萌中', function(){
-              //   //关闭后的操作
-              //   });
-              //监听提交
-              form.on('submit(login)', function(data){
-                // alert(888)
-                layer.msg(JSON.stringify(data.field),function(){
-                    location.href='index.html'
+        function login() {
+            var loginAccount = $("#loginAccount").val();
+            var password = $("#password").val();
+            $.ajax({
+                type:"post",
+                dataType : 'json',
+                async:false,
+                data:{loginAccount :loginAccount,
+                    password : password},
+                url:"${ctx}/login/checkLogin.do",
+                success:function(data){
+                    if(data.state != null || data.state != ""){
+                        redirectUrl(data,loginAccount);
+                    }
+                }
+
+            })
+        }
+
+        function redirectUrl(data,loginAccount){
+            if(!data.state){
+                layer.msg(data.msg);
+            }else {
+                var index = layer.load(1, {
+                    shade: [0.5,'#fff'] //0.5透明度的白色背景
                 });
-                return false;
-              });
-            });
-        })
+                window.location.href = "${ctx}/login/loging.do?loginAccount="+loginAccount;
+            }
+
+
+        }
+
 
         
     </script>
 
-    
-    <!-- 底部结束 -->
-    <script>
-    //百度统计可去掉
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
 </body>
 </html>

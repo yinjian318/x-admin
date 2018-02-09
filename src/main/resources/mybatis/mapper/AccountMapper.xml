@@ -29,6 +29,18 @@
     from account
     where accountId = #{accountId,jdbcType=BIGINT}
   </select>
+  <select id="selcetCheck" resultType="com.model.Account" parameterType="com.model.Account">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM account
+    WHERE
+    idDelete = 0
+      AND
+    loginAccount = #{loginAccount,jdbcType=VARCHAR}
+      AND
+    password = #{password,jdbcType=VARCHAR}
+
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from account
     where accountId = #{accountId,jdbcType=BIGINT}
